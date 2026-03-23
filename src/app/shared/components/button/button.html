@@ -1,3 +1,5 @@
-<button [type]="type" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+<button [type]="type"
+    class="w-full py-2 rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+    [disabled]="disabled">
     {{ text }}
 </button>

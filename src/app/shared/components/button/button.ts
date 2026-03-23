@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button.css',
 })
 export class Button {
+  @Input() disabled: boolean = true;
   @Input() text!: string;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
 }
