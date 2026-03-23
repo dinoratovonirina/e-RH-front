@@ -1,0 +1,23 @@
+<form [formGroup]="formRegister" (ngSubmit)="registerSubmit()" class="space-y-5 w-full">
+    <div>
+        <app-input-field label="Nom" type="text" placeholder="Votre nom" formControlName="firstName" />
+    </div>
+
+    <div>
+        <app-input-field label="Prenom" type="text" placeholder="Votre prénom" formControlName="lastName" />
+    </div>
+
+    <div>
+        <app-input-field label="Email" type="email" placeholder="exemple@email.com" formControlName="email" />
+    </div>
+
+    <div>
+        <app-select label="Rôle" [options]="roles" valueKey="id" labelKey="roleName" formControlName="roleId" />
+    </div>
+
+    <div>
+        <app-select label="Département" [options]="departements" valueKey="id" labelKey="departementName" formControlName="departementId" />
+    </div>
+
+    <app-button [disabled]="!formRegister.valid" type="submit" text="Envoyer" />
+</form>

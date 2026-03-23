@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { InputField } from '../../../../shared/components/input-field/input-field';
 import { Button } from '../../../../shared/components/button/button';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth-service';
+import { AuthService } from '../../services/auth/auth-service';
 
 @Component({
   selector: 'app-form-login',
@@ -12,7 +12,6 @@ import { AuthService } from '../../services/auth-service';
 })
 export class FormLogin implements OnInit {
   loginForm!: FormGroup;
-
   private authService = inject(AuthService);
 
   ngOnInit(): void {
@@ -24,7 +23,10 @@ export class FormLogin implements OnInit {
 
   handleSubmit() {
     if (this.loginForm.valid) {
-      this.authService.authLogin(this.loginForm.value);
-    } 
+      this.authService.authLogin(this.loginForm.value).subscribe({
+        next: () => { },
+        error: (err) => console.error('Erreur login', err)
+      });
+    }
   }
 }
