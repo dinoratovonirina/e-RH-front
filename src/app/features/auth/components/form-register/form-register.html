@@ -1,4 +1,12 @@
 <form [formGroup]="formRegister" (ngSubmit)="registerSubmit()" class="space-y-5 w-full">
+    @if (errorMsg()) {
+    <div class="relative">
+        <div class="absolute inset-x-0 text-center text-red-500 text-sm">
+            {{ errorMsg() }}
+        </div>
+    </div>
+    }
+
     <div>
         <app-input-field label="Nom" type="text" placeholder="Votre nom" formControlName="firstName" />
     </div>
@@ -11,13 +19,19 @@
         <app-input-field label="Email" type="email" placeholder="exemple@email.com" formControlName="email" />
     </div>
 
-    <div>
-        <app-select label="Rôle" [options]="roles" valueKey="id" labelKey="roleName" formControlName="roleId" />
+    <div class="flex justify-between gap-4">
+        <app-input-field label="Mot de passe" type="password" placeholder="••••••••" formControlName="password" />
+        <app-input-field label="Confirmation mot de passe" type="password" placeholder="••••••••"
+            formControlName="confirmPassword" />
     </div>
 
-    <div>
-        <app-select label="Département" [options]="departements" valueKey="id" labelKey="departementName" formControlName="departementId" />
+    @if (formRegister.hasError('passwordMismatch') && formRegister.get('confirmPassword')?.touched) {
+    <div class="relative">
+        <div class="absolute inset-x-0 text-red-500 text-center text-sm -mt-5">
+            Les mots de passe ne correspondent pas.
+        </div>
     </div>
+    }
 
     <app-button [disabled]="!formRegister.valid" type="submit" text="Envoyer" />
 </form>

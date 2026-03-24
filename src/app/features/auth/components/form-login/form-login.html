@@ -17,4 +17,12 @@
     </div>
 
     <app-button [disabled]="!loginForm.valid" type="submit" text="Se connecter"></app-button>
+
+    @if (errorMsg()) {
+    <div class="relative">
+        <div class="absolute inset-x-0 text-center text-red-400 text-sm">
+            {{ errorMsg() }}
+        </div>
+    </div>
+    }
 </form>
