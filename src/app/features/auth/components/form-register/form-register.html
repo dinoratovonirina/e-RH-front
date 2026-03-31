@@ -8,21 +8,63 @@
     }
 
     <div>
+        <div class="relative">
+            <div class="absolute inset-x-0 text-red-500 text-center text-sm">
+            @if (firstNameCtrl.touched && firstNameCtrl.invalid) {
+                @if (firstNameCtrl.errors?.['required']) {
+                    Prénom requis
+                }
+                @if (firstNameCtrl.errors?.['minlength']) {
+                    Minimum 5 caractères
+                }
+                @if (firstNameCtrl.errors?.['pattern']) {
+                    Seules les lettres sont autorisées
+                }
+            }
+            </div>
+        </div>
         <app-input-field label="Nom" type="text" placeholder="Votre nom" formControlName="firstName" />
     </div>
 
     <div>
+        <div class="relative">
+            <div class="absolute inset-x-0 text-red-500 text-center text-sm">
+            @if (lastNameCtrl.touched && lastNameCtrl.invalid) {
+                @if (lastNameCtrl.errors?.['required']) {
+                    Nom requis
+                }
+                @if (lastNameCtrl.errors?.['minlength']) {
+                    Minimum 3 caractères
+                }
+                @if (lastNameCtrl.errors?.['pattern']) {
+                    Seules les lettres sont autorisées
+                }
+            }
+            </div>
+        </div>
         <app-input-field label="Prenom" type="text" placeholder="Votre prénom" formControlName="lastName" />
     </div>
 
     <div>
+        <div class="relative">
+            <div class="absolute inset-x-0 text-red-500 text-center text-sm">
+            @if (emailCtrl.touched && emailCtrl.invalid) {
+                @if (emailCtrl.errors?.['required']) {
+                    Email requis
+                }
+                @if (emailCtrl.errors?.['email']) {
+                    Format d'email invalide
+                }
+            }
+            </div>
+        </div>
         <app-input-field label="Email" type="email" placeholder="exemple@email.com" formControlName="email" />
     </div>
 
+    
     <div class="flex justify-between gap-4">
         <app-input-field label="Mot de passe" type="password" placeholder="••••••••" formControlName="password" />
-        <app-input-field label="Confirmation mot de passe" type="password" placeholder="••••••••"
-            formControlName="confirmPassword" />
+        <app-input-field label="Confirmation mot de passe" type="password" placeholder="••••••••" formControlName="confirmPassword" />
     </div>
 
     @if (formRegister.hasError('passwordMismatch') && formRegister.get('confirmPassword')?.touched) {
@@ -32,6 +74,19 @@
         </div>
     </div>
     }
+
+    <div class="relative">
+        <div class="absolute inset-x-0 text-red-500 text-center text-sm -mt-5">
+        @if (passwordCtrl.touched && passwordCtrl.invalid) {
+            @if (passwordCtrl.errors?.['required']) {
+                Mot de passe requis
+            }
+            @if (passwordCtrl.errors?.['minlength']) {
+                Minimum 6 caractères
+            }
+        }
+        </div>
+    </div>
 
     <app-button [disabled]="!formRegister.valid" type="submit" text="Envoyer" />
 </form>

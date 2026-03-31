@@ -1,7 +1,37 @@
 <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()" class="space-y-5">
-    <app-input-field label="Email" type="email" placeholder="exemple@mail.com"
-        formControlName="email"></app-input-field>
+    @if (emailCtrl.touched && emailCtrl.invalid) {
+    <div class="relative">
+        <div class="absolute inset-x-0 text-red-500 text-center text-sm">
+
+            @if (emailCtrl.errors?.['required']) {
+            Email requis
+            }
+
+            @if (emailCtrl.errors?.['email']) {
+            Format d'email invalide
+            }
+
+        </div>
+    </div>
+    }
+    <app-input-field label="Email" type="email" placeholder="exemple@mail.com" formControlName="email" />
+
     <div class="my-6"></div>
+
+    @if (passwordCtrl.touched && passwordCtrl.invalid) {
+    <div class="relative">
+        <div class="absolute inset-x-0 text-red-500 text-center text-sm">
+
+            @if (passwordCtrl.errors?.['required']) {
+            Mot de passe requis
+            }
+
+            @if (passwordCtrl.errors?.['minlength']) {
+            Minimum 6 caractères
+            }
+        </div>
+    </div>
+    }
     <app-input-field label="Mot de passe" type="password" placeholder="••••••••"
         formControlName="password"></app-input-field>
 

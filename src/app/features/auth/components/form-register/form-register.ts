@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { InputField } from "../../../../shared/components/input-field/input-field";
 import { Button } from "../../../../shared/components/button/button";
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterService } from '../../services/register/register-service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { User } from '../../../../core/models/user';
@@ -20,13 +20,28 @@ export class FormRegister {
   public errorMsg = signal<string>('');
 
   formRegister = this.fb.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+    firstName: ['', [Validators.required, Validators.minLength(5), Validators.pattern('^[A-Za-z]+$')]],
+    lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[A-Za-z ]+$')]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', [Validators.required]]
   }, { validators: passwordMatchValidator });
 
+  get firstNameCtrl() {
+    return this.formRegister.get('firstName') as FormControl;
+  }
+
+  get lastNameCtrl() {
+    return this.formRegister.get('lastName') as FormControl;
+  }
+
+  get emailCtrl() {
+    return this.formRegister.get('email') as FormControl;
+  }
+
+  get passwordCtrl() {
+    return this.formRegister.get('password') as FormControl;
+  }
 
   registerSubmit() {
     if (this.formRegister.valid) {
