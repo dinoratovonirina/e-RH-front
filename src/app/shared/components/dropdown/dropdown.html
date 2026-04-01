@@ -1,0 +1,15 @@
+<div class="relative inline-block">
+
+    <!-- Trigger -->
+    <button (click)="toggle($event)" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer">
+        ⋮
+    </button>
+
+    <!-- Menu -->
+    @if (isOpen()) {
+    <div class="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
+        <ng-content></ng-content>
+    </div>
+    }
+
+</div>
