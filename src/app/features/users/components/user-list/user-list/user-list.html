@@ -1,0 +1,7 @@
+<!-- NAVBAR -->
+<app-navbar />
+
+<div class="p-6">
+    <app-table [columns]="columns" [data]="users()" [actions]="actions" [pageSize]="10"
+        (actionClick)="onAction($event)" />
+</div>

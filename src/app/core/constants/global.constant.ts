@@ -3,7 +3,9 @@ export const GlobalConstant = {
         AUTH: "auth",
         HOME: "home",
         DEPARTMENT: "departement",
-        ROLE: "role"
+        ROLE: "role",
+        LOGIN: "login",
+        USER: "user"
     },
     API_END_POINT_METHODE: {
         LOGIN: {

@@ -51,20 +51,11 @@
 
                     @if (actions.length) {
                     <td class="py-3 px-4 text-left relative">
-                        <button (click)="toggle(row.id, $event)" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer">
-                            ⋮
-                        </button>
-
-                        @if (openMenuId === row.id) {
-                            <div [class.hidden]="!openMenuId" class="absolute right-16 mt-2 w-32 bg-white border rounded shadow-lg z-9">
-                                @for (action of actions; track $index) {
-                                <button (click)="onAction(action, row)"
-                                    class="block w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                    {{ action.label }}
-                                </button>
-                                }
-                            </div>
-                        }
+                        <app-dropdown
+                            [actions]="actions"
+                            [row]="row"
+                            (actionSelected)="handleAction($event)">
+                        </app-dropdown>
                     </td>
                     }
                 </tr>

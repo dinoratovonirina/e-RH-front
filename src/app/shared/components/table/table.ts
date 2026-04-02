@@ -1,22 +1,12 @@
-import { Component, Input, Output, EventEmitter, OnChanges, HostListener } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-export interface TableColumn {
-  key: string;
-  label: string;
-  sortable?: boolean;
-}
-
-export interface TableAction {
-  label: string;
-  type: 'edit' | 'delete' | 'custom';
-  class?: string;
-}
+import { Dropdown } from "../dropdown/dropdown";
+import { TableAction, TableColumn } from '../../../core/types/tablesType';
 
 @Component({
   selector: 'app-table',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Dropdown],
   templateUrl: './table.html',
   styleUrl: './table.css',
 })
@@ -37,17 +27,6 @@ export class Table implements OnChanges {
 
   // Pagination
   currentPage = 1;
-
-  openMenuId: number | null = null;
-  toggle(id: number, event: MouseEvent) {
-    event.stopPropagation();
-    this.openMenuId = this.openMenuId === id ? null : id;
-  }
-
-  @HostListener('document:click')
-  close() {
-    this.openMenuId = null;
-  }
 
   get filteredData() {
     let result = [...this.data];
@@ -106,14 +85,8 @@ export class Table implements OnChanges {
     this.currentPage = 1;
   }
 
-  onAction(action: TableAction, row: any) {
+  handleAction(event: { action: TableAction, row: any }) {
+    const { action, row } = event;
     this.actionClick.emit({ action, row });
-  }
-
-  actionClass(action: TableAction): string {
-    if (action.class) return action.class;
-    if (action.type === 'delete') return 'text-red-500 hover:underline';
-    if (action.type === 'edit') return 'text-blue-500 hover:underline';
-    return 'text-gray-500 hover:underline';
   }
 }

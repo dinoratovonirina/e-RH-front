@@ -1,1 +1,69 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+</head>
+
+<body class="bg-gray-100">
+    <!-- NAVBAR -->
+    <app-navbar></app-navbar>
+
+    <!-- BODY -->
+    <main class="container mx-auto mt-10 p-4">
+
+        <!-- Hero Section -->
+        <section class="text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                Bienvenue sur mon site 🚀
+            </h2>
+            <p class="text-gray-600 mb-6">
+                Ceci est une page d'accueil simple avec Tailwind CSS.
+            </p>
+            <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                Commencer
+            </button>
+        </section>
+
+        <!-- Cards -->
+        <section class="grid md:grid-cols-3 gap-6 mt-10">
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="text-xl font-semibold mb-2">Service 1</h3>
+                <p class="text-gray-600">Description du service.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="text-xl font-semibold mb-2">Service 2</h3>
+                <p class="text-gray-600">Description du service.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="text-xl font-semibold mb-2">Service 3</h3>
+                <p class="text-gray-600">Description du service.</p>
+            </div>
+
+        </section>
+
+        <section class="flex justify-center mt-10">
+            <div class="bg-white p-6 rounded-xl shadow text-center w-64">
+
+                <h3 class="text-xl font-semibold mb-4">📅 Aujourd'hui</h3>
+
+                <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="mx-auto w-24 mb-4">
+
+                <p id="date" class="text-lg font-bold text-gray-700"></p>
+
+            </div>
+        </section>
+
+        <script>
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("date").innerText = today.toLocaleDateString('fr-FR', options);
+        </script>
+    </main>
+</body>
+
+</html>
