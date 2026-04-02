@@ -1,20 +1,25 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Dropdown } from "../dropdown/dropdown";
-import { TableAction, TableColumn } from '../../../core/types/tablesType';
+import { TableAction, TableColumn } from '../../../core/models/tables';
+import { Button } from "../button/button";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
-  imports: [CommonModule, FormsModule, Dropdown],
+  imports: [CommonModule, FormsModule, Dropdown, Button],
   templateUrl: './table.html',
   styleUrl: './table.css',
 })
 export class Table implements OnChanges {
+  private router = inject(Router);
   @Input() columns: TableColumn[] = [];
   @Input() data: any[] = [];
   @Input() actions: TableAction[] = [];
   @Input() pageSize = 10;
+  @Input() labelButton: string = "";
+  @Input() pathButton: string = "";
 
   @Output() actionClick = new EventEmitter<{ action: TableAction; row: any }>();
 
@@ -88,5 +93,9 @@ export class Table implements OnChanges {
   handleAction(event: { action: TableAction, row: any }) {
     const { action, row } = event;
     this.actionClick.emit({ action, row });
+  }
+
+  handleClick() {
+    this.router.navigateByUrl(this.pathButton);
   }
 }

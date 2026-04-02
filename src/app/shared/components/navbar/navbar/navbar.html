@@ -22,7 +22,7 @@
                     [class.hidden]="!isUserMenuOpen">
                     <!-- Liste des utilisateurs -->
                     <li>
-                        <a routerLink="/user" class="px-4 py-2 hover:bg-blue-500 hover:text-white block">
+                        <a routerLink="/setting/user-list" class="px-4 py-2 hover:bg-blue-500 hover:text-white block">
                             Utilisateurs
                         </a>
                     </li>
@@ -33,7 +33,7 @@
 
                     <!-- Déconnexion -->
                     <li>
-                        <a href="#" (click)="logout()" class="px-4 py-2 hover:bg-red-500 hover:text-white block">
+                        <a (click)="logout()" class="px-4 py-2 hover:bg-red-500 hover:text-white block cursor-pointer">
                             Déconnexion
                         </a>
                     </li>

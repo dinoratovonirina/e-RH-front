@@ -1,11 +1,11 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
-import { UserService } from '../../../services/user-service';
+import { UserService } from '../../services/user-service';
 import { catchError, EMPTY } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Navbar } from "../../../../../shared/components/navbar/navbar/navbar";
-import { User } from '../../../../../core/models/user';
-import { Table } from '../../../../../shared/components/table/table';
-import { TableAction, TableColumn } from '../../../../../core/types/tablesType';
+import { Navbar } from "../../../../shared/components/navbar/navbar/navbar";
+import { User } from '../../../../core/models/user';
+import { Table } from '../../../../shared/components/table/table';
+import { TableAction, TableColumn } from '../../../../core/models/tables';
 
 @Component({
   selector: 'app-user-list',

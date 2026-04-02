@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output, signal } from '@angular/core';
-import { TableAction } from '../../../core/types/tablesType';
+import { TableAction } from '../../../core/models/tables';
 
 @Component({
   selector: 'app-dropdown',

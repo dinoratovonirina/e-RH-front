@@ -1,0 +1,25 @@
+<app-navbar />
+
+<div class="flex items-center justify-center mt-10">
+    <form (ngSubmit)="addUserSubmit()" class="space-y-5 w-full max-w-2xl">
+        @if (errorMsg()) {
+        <div class="relative">
+            <div class="absolute inset-x-0 text-center text-red-500 text-sm">
+                {{ errorMsg() }}
+            </div>
+        </div>
+        }
+
+        <div class="flex gap-2 justify-between">
+            <app-input-field label="Nom" type="text" placeholder="Votre nom" class="w-full" />
+
+            <app-input-field label="Prenom" type="text" placeholder="Votre prénom" class="w-full" />
+        </div>
+
+        <div>
+            <app-input-field label="Email" type="email" placeholder="exemple@email.com" />
+        </div>
+
+        <app-button [disabled]="true" type="submit" text="Envoyer" />
+    </form>
+</div>
